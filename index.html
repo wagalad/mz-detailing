@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>MZ Detailing — Professional Car Detailing in Charlotte, NC</title>
+  <meta name="description" content="Professional car detailing in Charlotte, NC. Interior, exterior, and full detail packages. Transparent pricing. Book by phone or email.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===========================================
+       TOKENS
+    =========================================== */
+    :root {
+      --bg:           oklch(10% 0.008 55);
+      --surface:      oklch(14% 0.01  55);
+      --surface-2:    oklch(19% 0.013 55);
+      --border:       oklch(26% 0.012 55);
+      --text:         oklch(93% 0.006 80);
+      --text-muted:   oklch(62% 0.01  75);
+      --text-dim:     oklch(42% 0.01  75);
+      --accent:       oklch(72% 0.17  72);
+      --accent-hi:    oklch(79% 0.19  72);
+      --accent-dim:   oklch(28% 0.07  72);
+
+      --sp-1:  4px;   --sp-2:  8px;  --sp-3: 12px;
+      --sp-4: 16px;   --sp-6: 24px;  --sp-8: 32px;
+      --sp-12: 48px;  --sp-16: 64px; --sp-24: 96px;
+
+      --ease-out:  cubic-bezier(0.25, 1, 0.5, 1);
+      --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --nav-h: 68px;
+    }
+
+    /* ===========================================
+       RESET
+    =========================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img  { display: block; max-width: 100%; }
+    a    { color: inherit; text-decoration: none; }
+    ul   { list-style: none; }
+
+    /* ===========================================
+       TYPE SCALE
+    =========================================== */
+    .display {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: clamp(4rem, 14vw, 11rem);
+      line-height: 0.92;
+      letter-spacing: -0.01em;
+      text-wrap: balance;
+    }
+    .heading-xl {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    .heading-lg {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      letter-spacing: 0.01em;
+    }
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ===========================================
+       LAYOUT
+    =========================================== */
+    .container {
+      width: min(100%, 1120px);
+      margin-inline: auto;
+      padding-inline: var(--sp-6);
+    }
+    .section-pad { padding-block: clamp(var(--sp-16), 10vw, var(--sp-24)); }
+
+    /* ===========================================
+       BUTTONS
+    =========================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--sp-2);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 11px 24px;
+      font-size: 0.85rem;
+      transition: background 150ms, border-color 150ms, color 150ms, transform 100ms;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:active { transform: none !important; }
+
+    .btn-gold {
+      background: var(--accent);
+      color: oklch(11% 0.008 55);
+    }
+    .btn-gold:hover { background: var(--accent-hi); transform: translateY(-1px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--text-muted); transform: translateY(-1px); }
+
+    .btn-lg { padding: 15px 28px; font-size: 0.95rem; }
+    .btn-full { width: 100%; }
+
+    /* ===========================================
+       NAV
+    =========================================== */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto;
+      height: var(--nav-h);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      transition: background 300ms var(--ease-out), backdrop-filter 300ms;
+    }
+    .nav.scrolled {
+      background: oklch(10% 0.01 55 / 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .nav-inner {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: baseline;
+      gap: var(--sp-2);
+    }
+    .nav-mark {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+    }
+    .nav-name {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .nav-links {
+      display: flex;
+      gap: var(--sp-8);
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 150ms;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* Hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: var(--sp-2);
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--text);
+      transition: transform 250ms var(--ease-out), opacity 150ms;
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .nav-drawer {
+      position: fixed;
+      top: var(--nav-h);
+      inset-inline: 0;
+      background: oklch(10% 0.012 55 / 0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: var(--sp-8) var(--sp-6) var(--sp-12);
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-6);
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition:
+        opacity     220ms var(--ease-out),
+        transform   250ms var(--ease-out),
+        visibility  0ms   220ms;
+    }
+    .nav-drawer.open {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+      transition:
+        opacity     220ms var(--ease-out),
+        transform   250ms var(--ease-out),
+        visibility  0ms   0ms;
+    }
+    .nav-drawer a.drawer-link {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: var(--sp-6);
+    }
+
+    /* ===========================================
+       HERO
+    =========================================== */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: clamp(var(--sp-16), 10vw, var(--sp-24));
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=80');
+      background-size: cover;
+      background-position: center 35%;
+      background-color: oklch(14% 0.01 55);
+      will-change: transform;
+      transform: scale(1.04);
+      transition: transform 9s cubic-bezier(0.12, 0, 0.4, 1);
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        oklch(10% 0.008 55 / 0.35) 0%,
+        oklch(10% 0.008 55 / 0.05) 25%,
+        oklch(10% 0.008 55 / 0.65) 65%,
+        oklch(10% 0.008 55 / 1)    100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+    .hero-label {
+      margin-bottom: var(--sp-6);
+    }
+    .hero-hed {
+      margin-bottom: var(--sp-8);
+    }
+    .hero-hed .dot {
+      color: var(--accent);
+    }
+    .hero-sub {
+      max-width: 46ch;
+      margin-bottom: var(--sp-8);
+      color: var(--text-muted);
+      font-size: clamp(1rem, 1.4vw, 1.1rem);
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-4);
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: var(--sp-8);
+      right: var(--sp-6);
+      writing-mode: vertical-rl;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      z-index: 1;
+    }
+    .scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 44px;
+      background: var(--border);
+    }
+
+    /* ===========================================
+       SERVICES
+    =========================================== */
+    .services-hd { margin-bottom: clamp(var(--sp-12), 6vw, var(--sp-16)); }
+    .services-hd h2 { margin-top: var(--sp-3); }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr auto;
+      align-items: start;
+      column-gap: var(--sp-8);
+      row-gap: var(--sp-4);
+      padding-block: clamp(var(--sp-8), 5vw, var(--sp-12));
+      border-top: 1px solid var(--border);
+    }
+    .service-item:last-child { border-bottom: 1px solid var(--border); }
+
+    .svc-num {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      padding-top: 0.4em;
+    }
+    .svc-body h3 { margin-bottom: var(--sp-3); }
+    .svc-body p {
+      color: var(--text-muted);
+      max-width: 54ch;
+      line-height: 1.65;
+    }
+    .svc-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 5px 11px;
+      white-space: nowrap;
+      align-self: start;
+    }
+
+    /* ===========================================
+       PRICING
+    =========================================== */
+    .pricing { background: var(--surface); }
+    .pricing-hd { margin-bottom: clamp(var(--sp-12), 6vw, var(--sp-16)); }
+    .pricing-hd h2 { margin-top: var(--sp-3); }
+
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .price-card {
+      background: var(--surface);
+      padding: clamp(var(--sp-6), 3vw, var(--sp-8));
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-4);
+    }
+    .price-card.hi { background: var(--surface-2); }
+
+    .pc-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .pc-title {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+      letter-spacing: 0.01em;
+    }
+    .pc-price {
+      display: flex;
+      align-items: baseline;
+      gap: var(--sp-2);
+    }
+    .pc-amount {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.6rem, 4.5vw, 3.4rem);
+      color: var(--accent);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .pc-note {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      line-height: 1.45;
+      padding-top: var(--sp-3);
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+    .pc-note strong { color: var(--text-muted); font-weight: 500; }
+
+    /* ===========================================
+       WHY MZ
+    =========================================== */
+    .why-hd { margin-bottom: clamp(var(--sp-12), 6vw, var(--sp-16)); }
+    .why-hd h2 { margin-top: var(--sp-3); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--sp-12) var(--sp-8);
+    }
+    .why-item { display: flex; flex-direction: column; gap: var(--sp-4); }
+    .why-num {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: 3.5rem;
+      color: var(--accent);
+      opacity: 0.5;
+      line-height: 1;
+    }
+    .why-item h3 { font-size: 1.25rem; }
+    .why-item p { color: var(--text-muted); line-height: 1.65; max-width: 38ch; }
+
+    /* ===========================================
+       GALLERY
+    =========================================== */
+    .gallery { background: var(--surface); }
+    .gallery-hd { margin-bottom: clamp(var(--sp-12), 6vw, var(--sp-16)); }
+    .gallery-hd h2 { margin-top: var(--sp-3); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px;
+    }
+    .gallery-slot {
+      aspect-ratio: 4/3;
+      background: var(--surface-2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--sp-3);
+    }
+    .gallery-icon {
+      width: 40px; height: 40px;
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.35;
+      color: var(--text-muted);
+    }
+    .gallery-slot span {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .gallery-footer {
+      margin-top: var(--sp-8);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      flex-wrap: wrap;
+    }
+    .gallery-footer p { font-size: 0.88rem; color: var(--text-muted); }
+    .gallery-footer a {
+      font-size: 0.88rem;
+      color: var(--accent);
+      font-weight: 500;
+      border-bottom: 1px solid var(--accent-dim);
+      transition: border-color 150ms;
+    }
+    .gallery-footer a:hover { border-color: var(--accent); }
+
+    /* ===========================================
+       CONTACT
+    =========================================== */
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(var(--sp-12), 8vw, var(--sp-24));
+      align-items: start;
+    }
+    .contact-left .eyebrow { margin-bottom: var(--sp-3); }
+    .contact-left h2 { margin-bottom: var(--sp-10); }
+    .contact-details { display: flex; flex-direction: column; gap: var(--sp-6); }
+    .contact-row { display: flex; flex-direction: column; gap: var(--sp-1); }
+    .contact-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .contact-val {
+      font-size: 1.05rem;
+      font-weight: 500;
+      transition: color 150ms;
+    }
+    a.contact-val:hover { color: var(--accent); }
+
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: clamp(var(--sp-8), 4vw, var(--sp-12));
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-5);
+    }
+    .contact-box h3 {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+      letter-spacing: 0.01em;
+    }
+    .contact-box p { color: var(--text-muted); line-height: 1.65; max-width: 38ch; }
+    .contact-btns { display: flex; flex-direction: column; gap: var(--sp-3); }
+
+    /* ===========================================
+       FOOTER
+    =========================================== */
+    .footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding-block: var(--sp-12);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--sp-4);
+    }
+    .footer-nav {
+      display: flex;
+      gap: var(--sp-6);
+      flex-wrap: wrap;
+    }
+    .footer-nav a {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      transition: color 150ms;
+    }
+    .footer-nav a:hover { color: var(--text-muted); }
+    .footer-copy {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+    }
+
+    /* ===========================================
+       SCROLL REVEAL
+    =========================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition:
+        opacity   580ms var(--ease-out),
+        transform 580ms var(--ease-out);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 80ms;  }
+    .d2 { transition-delay: 160ms; }
+    .d3 { transition-delay: 240ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .hero-bg { transform: none; transition: none; }
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* ===========================================
+       RESPONSIVE
+    =========================================== */
+    @media (max-width: 768px) {
+      .nav-links  { display: none; }
+      .nav-book   { display: none; }
+      .nav-toggle { display: flex; }
+
+      .service-item {
+        grid-template-columns: 2.5rem 1fr;
+      }
+      .svc-tag {
+        grid-column: 2;
+        width: fit-content;
+      }
+
+      .contact-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: var(--sp-6); }
+    }
+
+    @media (max-width: 480px) {
+      .hero-ctas { flex-direction: column; align-items: stretch; }
+      .scroll-hint { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- =============================================
+     NAV
+============================================= -->
+<header class="nav" id="nav" role="banner">
+  <div class="container nav-inner">
+    <a href="#home" class="nav-logo" aria-label="MZ Detailing — home">
+      <span class="nav-mark">MZ</span>
+      <span class="nav-name">Detailing</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Site navigation">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a href="tel:2673356307" class="btn btn-gold nav-book">Book Now</a>
+
+    <button class="nav-toggle" id="navToggle"
+      aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <a href="#services" class="drawer-link">Services</a>
+  <a href="#pricing"  class="drawer-link">Pricing</a>
+  <a href="#gallery"  class="drawer-link">Gallery</a>
+  <a href="#contact"  class="drawer-link">Contact</a>
+  <a href="tel:2673356307" class="btn btn-gold btn-lg btn-full">Call to Book</a>
+</nav>
+
+<main>
+
+<!-- =============================================
+     HERO
+============================================= -->
+<section class="hero" id="home" aria-labelledby="hed">
+  <div class="hero-bg" id="heroBg"
+    role="img" aria-label="Luxury sports car on an open road"></div>
+
+  <div class="container hero-content">
+    <p class="eyebrow hero-label">Charlotte, NC + Greater Charlotte Area</p>
+    <h1 class="display hero-hed" id="hed">
+      Your Car.<br>Perfected<span class="dot">.</span>
+    </h1>
+    <p class="hero-sub">
+      Professional detailing that treats your vehicle the way it deserves.
+      Interior, exterior, and full-service packages across Charlotte.
+    </p>
+    <div class="hero-ctas">
+      <a href="tel:2673356307" class="btn btn-gold btn-lg">Call to Book</a>
+      <a href="#services"      class="btn btn-ghost btn-lg">See Services</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">Scroll</div>
+</section>
+
+
+<!-- =============================================
+     SERVICES
+============================================= -->
+<section class="services section-pad" id="services" aria-labelledby="svc-hed">
+  <div class="container">
+    <div class="services-hd reveal">
+      <p class="eyebrow">What We Do</p>
+      <h2 class="heading-xl" id="svc-hed">Every Detail, Covered</h2>
+    </div>
+
+    <ul>
+      <li class="service-item reveal">
+        <span class="svc-num">01</span>
+        <div class="svc-body">
+          <h3 class="heading-lg">Full Detail</h3>
+          <p>The complete treatment. Deep-cleaned interior plus a hand-washed, protected exterior. Your car leaves looking and feeling like it rolled out of the showroom.</p>
+        </div>
+        <span class="svc-tag">Interior + Exterior</span>
+      </li>
+
+      <li class="service-item reveal d1">
+        <span class="svc-num">02</span>
+        <div class="svc-body">
+          <h3 class="heading-lg">Interior Detail</h3>
+          <p>Full interior refresh: vacuuming, surface wipe-down, stain treatment, and a thorough clean of seats, dash, door panels, and floor mats. Leave the mess behind.</p>
+        </div>
+        <span class="svc-tag">Interior Only</span>
+      </li>
+
+      <li class="service-item reveal d2">
+        <span class="svc-num">03</span>
+        <div class="svc-body">
+          <h3 class="heading-lg">Exterior Detail</h3>
+          <p>Hand wash, clay bar, tire dressing, and window treatment. We remove contaminants a regular wash misses and give your paint the protection it needs.</p>
+        </div>
+        <span class="svc-tag">Exterior Only</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- =============================================
+     PRICING
+============================================= -->
+<section class="pricing section-pad" id="pricing" aria-labelledby="price-hed">
+  <div class="container">
+    <div class="pricing-hd reveal">
+      <p class="eyebrow">Transparent Pricing</p>
+      <h2 class="heading-xl" id="price-hed">No Surprises</h2>
+    </div>
+
+    <div class="price-grid" role="list">
+
+      <div class="price-card reveal" role="listitem">
+        <span class="pc-label">Full Detail</span>
+        <p class="pc-title">Regular Car</p>
+        <div class="pc-price">
+          <span class="pc-amount">$125</span>
+          <span style="font-size:0.8rem;color:var(--text-dim)">starting</span>
+        </div>
+        <p class="pc-note"><strong>+$20</strong> for heavily soiled vehicles ($145 total)</p>
+      </div>
+
+      <div class="price-card hi reveal d1" role="listitem">
+        <span class="pc-label">Full Detail</span>
+        <p class="pc-title">SUV / Truck</p>
+        <div class="pc-price">
+          <span class="pc-amount">$150</span>
+          <span style="font-size:0.8rem;color:var(--text-dim)">starting</span>
+        </div>
+        <p class="pc-note"><strong>+$35</strong> for heavily soiled vehicles ($185 total)</p>
+      </div>
+
+      <div class="price-card reveal d2" role="listitem">
+        <span class="pc-label">Interior Only</span>
+        <p class="pc-title">Any Vehicle</p>
+        <div class="pc-price">
+          <span class="pc-amount">$75</span>
+        </div>
+        <p class="pc-note">Interior deep clean, all vehicle sizes</p>
+      </div>
+
+      <div class="price-card reveal d3" role="listitem">
+        <span class="pc-label">Exterior Only</span>
+        <p class="pc-title">Any Vehicle</p>
+        <div class="pc-price">
+          <span class="pc-amount">$65</span>
+        </div>
+        <p class="pc-note">Hand wash, clay bar, tire and window treatment</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================
+     WHY MZ
+============================================= -->
+<section class="why section-pad" aria-labelledby="why-hed">
+  <div class="container">
+    <div class="why-hd reveal">
+      <p class="eyebrow">Why MZ</p>
+      <h2 class="heading-xl" id="why-hed">Craftsmanship First</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <span class="why-num">01</span>
+        <h3 class="heading-lg">Local to Charlotte</h3>
+        <p>We serve Charlotte and the greater area. Mobile detailing brought directly to your driveway, office, or wherever your car is parked.</p>
+      </div>
+      <div class="why-item reveal d1">
+        <span class="why-num">02</span>
+        <h3 class="heading-lg">Detail-Obsessed</h3>
+        <p>Every job gets the same focus whether it's a daily driver or a weekend car. We don't rush. We don't cut corners. The work speaks for itself.</p>
+      </div>
+      <div class="why-item reveal d2">
+        <span class="why-num">03</span>
+        <h3 class="heading-lg">Honest Pricing</h3>
+        <p>Flat-rate pricing with one clear surcharge for heavy jobs. No surprise fees, no upsells you didn't ask for. What you see is what you pay.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================
+     GALLERY
+============================================= -->
+<section class="gallery section-pad" id="gallery" aria-labelledby="gal-hed">
+  <div class="container">
+    <div class="gallery-hd reveal">
+      <p class="eyebrow">The Work</p>
+      <h2 class="heading-xl" id="gal-hed">Results That Speak</h2>
+    </div>
+
+    <div class="gallery-grid" role="list" aria-label="Work portfolio — photos coming soon">
+      <div class="gallery-slot reveal"    role="listitem" aria-label="Photo coming soon">
+        <div class="gallery-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="1" y="3" width="14" height="10" rx="1.5"/>
+            <circle cx="5.5" cy="7.5" r="1.5"/>
+            <path d="M1 12l3.5-3.5 3 3 2.5-2.5 4 4"/>
+          </svg>
+        </div>
+        <span>Photo Coming Soon</span>
+      </div>
+      <div class="gallery-slot reveal d1" role="listitem" aria-label="Photo coming soon">
+        <div class="gallery-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="1" y="3" width="14" height="10" rx="1.5"/>
+            <circle cx="5.5" cy="7.5" r="1.5"/>
+            <path d="M1 12l3.5-3.5 3 3 2.5-2.5 4 4"/>
+          </svg>
+        </div>
+        <span>Photo Coming Soon</span>
+      </div>
+      <div class="gallery-slot reveal d2" role="listitem" aria-label="Photo coming soon">
+        <div class="gallery-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="1" y="3" width="14" height="10" rx="1.5"/>
+            <circle cx="5.5" cy="7.5" r="1.5"/>
+            <path d="M1 12l3.5-3.5 3 3 2.5-2.5 4 4"/>
+          </svg>
+        </div>
+        <span>Photo Coming Soon</span>
+      </div>
+      <div class="gallery-slot reveal d3" role="listitem" aria-label="Photo coming soon">
+        <div class="gallery-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="1" y="3" width="14" height="10" rx="1.5"/>
+            <circle cx="5.5" cy="7.5" r="1.5"/>
+            <path d="M1 12l3.5-3.5 3 3 2.5-2.5 4 4"/>
+          </svg>
+        </div>
+        <span>Photo Coming Soon</span>
+      </div>
+    </div>
+
+    <div class="gallery-footer reveal">
+      <p>See our latest work on Instagram:</p>
+      <a href="https://www.instagram.com/mz.detailz/"
+        target="_blank" rel="noopener noreferrer">@mz.detailz</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================
+     CONTACT
+============================================= -->
+<section class="section-pad" id="contact" aria-labelledby="contact-hed">
+  <div class="container">
+    <div class="contact-inner">
+
+      <div class="contact-left">
+        <p class="eyebrow reveal">Get in Touch</p>
+        <h2 class="heading-xl reveal" id="contact-hed" style="margin-top:var(--sp-3);margin-bottom:var(--sp-10)">
+          Ready to Book?
+        </h2>
+        <div class="contact-details">
+          <div class="contact-row reveal">
+            <span class="contact-label">Phone</span>
+            <a href="tel:2673356307" class="contact-val">267-335-6307</a>
+          </div>
+          <div class="contact-row reveal d1">
+            <span class="contact-label">Email</span>
+            <a href="mailto:mzdetailing3@gmail.com" class="contact-val">mzdetailing3@gmail.com</a>
+          </div>
+          <div class="contact-row reveal d2">
+            <span class="contact-label">Service Area</span>
+            <span class="contact-val">Charlotte, NC + Greater Charlotte</span>
+          </div>
+          <div class="contact-row reveal d3">
+            <span class="contact-label">Instagram</span>
+            <a href="https://www.instagram.com/mz.detailz/"
+              target="_blank" rel="noopener noreferrer"
+              class="contact-val">@mz.detailz</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-right reveal">
+        <div class="contact-box">
+          <h3>Book Your Detail Today</h3>
+          <p>Call or text to schedule. We confirm availability and bring everything to you.</p>
+          <div class="contact-btns">
+            <a href="tel:2673356307"
+              class="btn btn-gold btn-lg btn-full">Call 267-335-6307</a>
+            <a href="mailto:mzdetailing3@gmail.com"
+              class="btn btn-ghost btn-lg btn-full">Email Us</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- =============================================
+     FOOTER
+============================================= -->
+<footer class="footer" role="contentinfo">
+  <div class="container footer-inner">
+    <a href="#home" class="nav-logo" aria-label="MZ Detailing — back to top">
+      <span class="nav-mark">MZ</span>
+      <span class="nav-name">Detailing</span>
+    </a>
+    <nav class="footer-nav" aria-label="Footer links">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://www.instagram.com/mz.detailz/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="tel:2673356307">267-335-6307</a>
+    </nav>
+    <p class="footer-copy">&copy; 2026 MZ Detailing. Charlotte, NC.</p>
+  </div>
+</footer>
+
+
+<script>
+  // Sticky nav
+  const nav = document.getElementById('nav');
+  const syncNav = () => nav.classList.toggle('scrolled', scrollY > 20);
+  addEventListener('scroll', syncNav, { passive: true });
+  syncNav();
+
+  // Hero background slow zoom on load
+  const heroBg = document.getElementById('heroBg');
+  requestAnimationFrame(() => { heroBg.style.transform = 'scale(1)'; });
+
+  // Mobile menu
+  const toggle = document.getElementById('navToggle');
+  const drawer = document.getElementById('navDrawer');
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    drawer.classList.toggle('open', !open);
+    document.body.style.overflow = !open ? 'hidden' : '';
+  });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    toggle.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(
+    entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    }),
+    { threshold: 0.1, rootMargin: '0px 0px -36px 0px' }
+  );
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
